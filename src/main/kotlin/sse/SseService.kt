@@ -1,16 +1,19 @@
 package sse
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.http.codec.ServerSentEvent
 import org.springframework.stereotype.Component
 import reactor.core.publisher.EmitterProcessor
 import reactor.core.publisher.Flux
 import java.time.Duration
-import java.util.*
 
 
 @Component
 class SseService {
-    private final var emitter: EmitterProcessor<ServerSentEvent<Any>> = EmitterProcessor.create(false)
+    val emitter: EmitterProcessor<ServerSentEvent<Any>> = EmitterProcessor.create(false)
+    val mapper: ObjectMapper = jacksonObjectMapper()
+
 
     init {
         val interval: Flux<Long> = Flux.interval(Duration.ofSeconds(3))
@@ -20,9 +23,9 @@ class SseService {
 
     fun publish(event: Event) {
         emitter.onNext(
-                ServerSentEvent.builder<Any>()
-                        .event(event.toString())
-                        .id(UUID.randomUUID().toString())
+                ServerSentEvent.builder<Any>(mapper.writeValueAsString(event.data))
+                        .event(event.type)
+                        .id(event.id)
                         .build())
     }
     fun ping() {
