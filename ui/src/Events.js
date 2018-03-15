@@ -1,22 +1,28 @@
 const Events = {
-  subscribe: () => {
+  subscribe: (handlers = {}) => {
     const eventSource = new EventSource('/v1/events:subscribe');
 
-    eventSource.addEventListener('open', () => {
-      console.log('Connection => open');
+    eventSource.addEventListener('open', (evt) => {
+      console.log('SSE[open]=> ', evt);
     });
 
-    eventSource.addEventListener('error', () => {
-      console.log('Connection => error');
+    eventSource.addEventListener('error', (evt) => {
+      console.log('SSE[error] => ', evt);
     });
 
-    eventSource.addEventListener('message', (data) => {
+    eventSource.addEventListener('message', (evt) => {
       /*Standard type, when no event type specified*/
-      console.log('Message => ', data);
+      console.log('SSE[message] => ', evt);
     });
 
-    eventSource.addEventListener('MessageReceived', (data) => {
-      console.log('MessageReceived => ', data);
+    eventSource.addEventListener('MessageReceived', (evt) => {
+      console.log('SSE[MessageReceived] => ', evt);
+      if (handlers.onMessageReceived) {
+        handlers.onMessageReceived({
+          lastEventId: evt.lastEventId,
+          ...JSON.parse(evt.data)
+        });
+      }
     })
 
     return eventSource;
