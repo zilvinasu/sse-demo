@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input } from 'material-ui';
+import { Button, Input, Typography } from 'material-ui';
 import { Send as SendIcon } from 'material-ui-icons';
 import * as uuid from 'uuid';
 import Events from './Events';
@@ -58,6 +58,7 @@ class ChatRoom extends Component {
   render() {
     return (
       <React.Fragment>
+        <Typography variant="title">#creeps-anonymous</Typography>
         <MessageList messages={this.state.messages} />
         <div style={{ display: 'flex' }}>
           <Input
