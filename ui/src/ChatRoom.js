@@ -26,7 +26,7 @@ class ChatRoom extends Component {
   }
 
   onMessageReceived(message) {
-    this.setState({ messages: [...this.state.messages, message]})
+    this.setState({ messages: [message, ...this.state.messages]})
   }
 
   onMessageSubmit() {
