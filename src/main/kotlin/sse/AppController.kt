@@ -1,5 +1,6 @@
 package sse
 
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -17,5 +18,7 @@ class AppController() {
     fun publish(@RequestBody event: Event) = sseService.publish(event)
 
     @GetMapping("/v1/events:subscribe")
-    fun subscribe() = sseService.subscribe()
+    fun subscribe() = ResponseEntity.ok()
+            .header("Cache-Control", "no-transform")
+            .body(sseService.subscribe())
 }
