@@ -22,11 +22,13 @@ class SseService {
 
 
     fun publish(event: Event) {
+        val builder = ServerSentEvent.builder<Any>(mapper.writeValueAsString(event.data))
+                .id(event.id)
+
         emitter.onNext(
-                ServerSentEvent.builder<Any>(mapper.writeValueAsString(event.data))
-                        .event(event.type)
-                        .id(event.id)
-                        .build())
+                if (event.type !== null) builder.event(event.type).build()
+                else builder.build()
+        )
     }
     fun ping() {
         emitter.onNext(
