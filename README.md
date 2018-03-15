@@ -2,6 +2,13 @@
 
 **DISCLAIMER**: _Many best practises were harmed during this demo_
 
+## Development
+
+### Run App from CLI
+```
+./gradlew bootRun
+```
+
 
 ## API
 
