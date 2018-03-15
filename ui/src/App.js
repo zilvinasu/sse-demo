@@ -1,26 +1,11 @@
 import React, { Component } from 'react';
+import Subscribe from './Subscribe';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.eventSource = new EventSource('/v1/events:subscribe');
-
-    this.eventSource.addEventListener('open', () => {
-      console.log('Connection is open');
-    });
-
-    this.eventSource.addEventListener('error', () => {
-      console.log('error received');
-    });
-
-    this.eventSource.addEventListener('message', (data) => {
-      console.log('Receiving data => ', data);
-    });
-
-    this.eventSource.onmessage = () => {
-      console.log('receiving message => ', console.log('ddd'));
-    };
+    this.subscriber = new Subscribe('/v1/events:subscribe');
   }
 
   render() {
