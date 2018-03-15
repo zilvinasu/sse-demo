@@ -10,7 +10,10 @@ const styles = {
   },
   item: {
     flexShrink: 0,
-    padding: 0,
+    padding: '0.3rem',
+    marginBottom: '0.1rem',
+    border: '1px solid lightgray',
+    borderRadius: '5px',
   },
 }
 
@@ -21,7 +24,6 @@ const MessageList = ({ messages }) => (
         <ListItemText
           primary={message.body}
           secondary={`creep[${message.userId}] @ ${new Date(message.timestamp).toLocaleString()}`} />
-        <Divider />
       </ListItem>
     ))}
   </List>
