@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ListItem, ListItemText, Divider } from 'material-ui';
+import { List, ListItem, ListItemText } from 'material-ui';
 
 const styles = {
   list: {
