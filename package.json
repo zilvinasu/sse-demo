@@ -7,11 +7,17 @@
   "license": "MIT",
   "scripts": {
     "client": "cd client && yarn start",
-    "server": "node server.js",
+    "server": "nodemon server.js",
     "dev": "concurrently -k \"yarn server\" \"yarn client\""
+  },
+  "nodemonConfig": {
+    "ignore": ["client/*"]
   },
   "dependencies": {
     "concurrently": "^3.5.1",
     "restify": "^6.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
   }
 }
