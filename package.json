@@ -1,23 +1,17 @@
 {
-  "name": "ui",
-  "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost:8080",
-  "dependencies": {
-    "material-ui": "^1.0.0-beta.37",
-    "material-ui-icons": "^1.0.0-beta.36",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1",
-    "restify": "^6.3.4",
-    "typeface-roboto": "^0.0.54",
-    "uuid": "^3.2.1"
-  },
+  "name": "sse-demo",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "git@github.com:zilvinasu/sse-demo.git",
+  "author": "Žilvinas Urbonas <zilvinas.urbon@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "server": "node server.js"
+    "client": "cd client && yarn start",
+    "server": "node server.js",
+    "dev": "concurrently -k \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "restify": "^6.3.4"
   }
 }
