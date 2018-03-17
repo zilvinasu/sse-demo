@@ -32,7 +32,7 @@ class ChatRoom extends Component {
   onMessageSubmit() {
     Events.publish({
       id: uuid.v4(),
-      type: 'MessageReceived',
+      type: 'MESSAGE_RECEIVED',
       data: {
         userId: this.state.userId,
         body: this.state.body,

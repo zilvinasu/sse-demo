@@ -17,20 +17,25 @@ server.get('/health', (req, res, next) => {
 server.post('/v1/events', (req, res, next) => {
   emitter.emit(EventType.MESSAGE_RECEIVED, req.body);
   res.send({ id: req.body.id });
-  return next();
+  next();
 });
 
 server.get('/v1/events:subscribe', (req, res, next) => {
   res.setHeader('content-type', 'text/event-stream');
-  res.setHeader('cache-control', 'no-cache');
+  res.setHeader('cache-control', 'no-transform');
 
-  emitter.on(EventType.MESSAGE_RECEIVED, (data) => {
-    res.write(`${JSON.stringify(data)}\n\n`)
+  emitter.on(EventType.MESSAGE_RECEIVED, (evt) => {
+    const response = [
+      `id: ${evt.id}`,
+      `event: ${evt.type}`,
+      `data: ${JSON.stringify(evt.data)}`
+    ].join('\n');
+
+    response.write(`${resp}\n\n`);
   });
 
-  emitter.on(EventType.PING, () => res.write(`:PING\n\n`))
+  emitter.on(EventType.PING, () => res.write(':PING\n\n'))
 });
-
 
 server.listen(8080, () => {
   console.log('%s listening at %s', server.name, server.url);

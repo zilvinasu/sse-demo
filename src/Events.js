@@ -15,8 +15,8 @@ const Events = {
       console.log('SSE[message] => ', evt);
     });
 
-    eventSource.addEventListener('MessageReceived', (evt) => {
-      console.log('SSE[MessageReceived] => ', evt);
+    eventSource.addEventListener('MESSAGE_RECEIVED', (evt) => {
+      console.log('SSE[MESSAGE_RECEIVED] => ', evt);
       if (handlers.onMessageReceived) {
         handlers.onMessageReceived({
           lastEventId: evt.lastEventId,
