@@ -3,7 +3,7 @@ const emitter = new events.EventEmitter();
 
 const EventType = {
   MESSAGE_RECEIVED: 'MESSAGE_RECEIVED',
-  PING: 'PING'
+  PING: 'PING',
 };
 
 setInterval(() => {
@@ -11,13 +11,11 @@ setInterval(() => {
 }, 3000);
 
 const serialize = (evt) => {
-  const message = [
-    `id: ${evt.id}`,
-    `event: ${evt.type}`,
-    `data: ${JSON.stringify(evt.data)}`
-  ].join('\n');
-
-  return `${message}\n\n`
+  let message = [];
+  if (evt.id) message.push(`id: ${evt.id}`);
+  if (evt.type) message.push(`event: ${evt.type}`);
+  if (evt.data) message.push(`data: ${JSON.stringify(evt.data)}`);
+  return `${message.join('\n')}\n\n`;
 };
 
 const SseEmitter = {
@@ -33,6 +31,6 @@ const SseEmitter = {
 module.exports = {
   EventType,
   SseEmitter,
-  serialize
+  serialize,
 };
 
