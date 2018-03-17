@@ -31,7 +31,7 @@ server.get('/v1/events:subscribe', (req, res, next) => {
       `data: ${JSON.stringify(evt.data)}`
     ].join('\n');
 
-    response.write(`${resp}\n\n`);
+    res.write(`${response}\n\n`);
   });
 
   emitter.on(EventType.PING, () => res.write(':PING\n\n'))
