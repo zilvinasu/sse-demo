@@ -11,7 +11,10 @@
     "dev": "concurrently -k \"yarn server\" \"yarn client\""
   },
   "nodemonConfig": {
-    "ignore": ["client/*"]
+    "ignore": [
+      "client/*",
+      "*.test.js"
+    ]
   },
   "dependencies": {
     "concurrently": "^3.5.1",
