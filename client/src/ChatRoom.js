@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { Input, InputAdornment, IconButton, Typography } from 'material-ui';
-import { Comment as CommentIcon } from 'material-ui-icons';
+import { Send as SendIcon } from 'material-ui-icons';
 import * as uuid from 'uuid';
 import Events from './Events';
 import MessageList from './MessageList';
 
+const styles = {
+  title: {
+    borderTop: '1px solid #E5E5E5',
+    borderBottom: '1px solid #E5E5E5',
+    padding: '0.5rem 0',
+  },
+};
 
 class ChatRoom extends Component {
   constructor(props) {
@@ -60,7 +67,7 @@ class ChatRoom extends Component {
   render() {
     return (
       <React.Fragment>
-        <Typography variant="title">#anonymous</Typography>
+        <Typography variant="title" style={styles.title}>#anonymous</Typography>
         <MessageList messages={this.state.messages} />
         <Input
           fullWidth
@@ -70,7 +77,7 @@ class ChatRoom extends Component {
           onChange={this.handleInputChange}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton onClick={this.onMessageSubmit}><CommentIcon /></IconButton>
+              <IconButton onClick={this.onMessageSubmit}><SendIcon /></IconButton>
             </InputAdornment>
           } />
       </React.Fragment>
