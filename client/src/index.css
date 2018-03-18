@@ -1,15 +1,29 @@
-html, body, #root {
+html, body {
   height: 100%;
 }
 
+body {
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .chat-title {
+  flex: 0 1 auto;
+  height: 24px;
+  background-color: #FFFFFF;
   border-top: 1px solid #E5E5E5;
   border-bottom: 1px solid #E5E5E5;
   padding: 0.5rem 0;
 }
 
 .chat-message-list {
-  height: 400px;
+  flex: 1 1 auto;
+  height: 100%;
   overflow: scroll;
   display: flex;
   flex-direction: column-reverse;
@@ -28,5 +42,11 @@ html, body, #root {
 
 .chat-message-header {
   padding: 1rem 0 0.1rem 0.5rem;
-  line-height: initial;
+  line-height: initial !important;
+}
+
+.chat-input {
+  flex: 0 1 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

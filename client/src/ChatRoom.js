@@ -21,7 +21,9 @@ class ChatRoom extends Component {
   }
 
   componentDidMount() {
-    this.events = Events.subscribe({ onMessageReceived: this.onMessageReceived });
+    this.events = Events.subscribe({
+      onMessageReceived: this.onMessageReceived,
+    });
   }
 
   onMessageReceived(message) {
@@ -63,6 +65,7 @@ class ChatRoom extends Component {
         <MessageList messages={this.state.messages} />
         <Input
           fullWidth
+          className="chat-input"
           value={this.state.body}
           placeholder="Type a message..."
           onKeyPress={this.handleKeyPress}
