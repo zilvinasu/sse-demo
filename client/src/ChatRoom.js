@@ -5,14 +5,6 @@ import * as uuid from 'uuid';
 import Events from './Events';
 import MessageList from './MessageList';
 
-const styles = {
-  title: {
-    borderTop: '1px solid #E5E5E5',
-    borderBottom: '1px solid #E5E5E5',
-    padding: '0.5rem 0',
-  },
-};
-
 class ChatRoom extends Component {
   constructor(props) {
     super(props);
@@ -67,7 +59,7 @@ class ChatRoom extends Component {
   render() {
     return (
       <React.Fragment>
-        <Typography variant="title" style={styles.title}>#anonymous</Typography>
+        <Typography variant="title" className="chat-title">#anonymous</Typography>
         <MessageList messages={this.state.messages} />
         <Input
           fullWidth

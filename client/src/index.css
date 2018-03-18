@@ -1,0 +1,32 @@
+html, body, #root {
+  height: 100%;
+}
+
+.chat-title {
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+  padding: 0.5rem 0;
+}
+
+.chat-message-list {
+  height: 400px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.chat-message {
+  flex-shrink: 0;
+  background-color: #F1F0F0;
+  color: #070707;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.1rem;
+  border: 1px solid lightgray;
+  border-radius: 0.9rem;
+  overflow-wrap: break-word;
+}
+
+.chat-message-header {
+  padding: 1rem 0 0.1rem 0.5rem;
+  line-height: initial;
+}
