@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Input, Typography } from 'material-ui';
-import { Send as SendIcon } from 'material-ui-icons';
+import { Button, Input, InputAdornment, IconButton, Typography } from 'material-ui';
+import { Comment as CommentIcon } from 'material-ui-icons';
 import * as uuid from 'uuid';
 import Events from './Events';
 import MessageList from './MessageList';
@@ -62,21 +62,17 @@ class ChatRoom extends Component {
       <React.Fragment>
         <Typography variant="title">#anonymous</Typography>
         <MessageList messages={this.state.messages} />
-        <div style={{ display: 'flex' }}>
-          <Input
-            style={{ flex: '2 0 0' }}
-            value={this.state.body}
-            placeholder="Creep into this input field"
-            onKeyPress={this.handleKeyPress}
-            onChange={this.handleInputChange} />
-
-          <Button
-            style={{ flex: '0.1 0 0', marginLeft: '0.5rem' }}
-            size="small"
-            color="primary"
-            variant="raised"
-            onClick={this.onMessageSubmit}><SendIcon />Send</Button>
-        </div>
+        <Input
+          fullWidth
+          value={this.state.body}
+          placeholder="Type a message..."
+          onKeyPress={this.handleKeyPress}
+          onChange={this.handleInputChange}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton onClick={this.onMessageSubmit}><CommentIcon /></IconButton>
+            </InputAdornment>
+          } />
       </React.Fragment>
     );
   }
