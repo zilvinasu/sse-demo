@@ -14,6 +14,7 @@ const styles = {
     marginBottom: '0.1rem',
     border: '1px solid lightgray',
     borderRadius: '5px',
+    overflowWrap: 'break-word',
   },
 }
 

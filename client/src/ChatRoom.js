@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input, InputAdornment, IconButton, Typography } from 'material-ui';
+import { Input, InputAdornment, IconButton, Typography } from 'material-ui';
 import { Comment as CommentIcon } from 'material-ui-icons';
 import * as uuid from 'uuid';
 import Events from './Events';
