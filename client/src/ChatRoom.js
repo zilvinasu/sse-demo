@@ -58,7 +58,7 @@ class ChatRoom extends Component {
   render() {
     return (
       <React.Fragment>
-        <Typography variant="title">#creeps-anonymous</Typography>
+        <Typography variant="title">#anonymous</Typography>
         <MessageList messages={this.state.messages} />
         <div style={{ display: 'flex' }}>
           <Input
