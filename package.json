@@ -6,10 +6,11 @@
   "author": "Žilvinas Urbonas <zilvinas.urbon@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "client": "cd client && yarn start",
-    "server": "nodemon server.js",
+    "dev-client": "cd client && yarn start",
+    "dev-server": "nodemon server.js",
+    "dev": "concurrently -k \"yarn dev-server\" \"yarn dev-client\"",
+    "server": "node server.js",
     "test": "jest -o --watch",
-    "dev": "concurrently -k \"yarn server\" \"yarn client\"",
     "buildDocker": "docker build -t github.com/zilvinasu/sse-demo ."
   },
   "nodemonConfig": {
