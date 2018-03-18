@@ -30,17 +30,19 @@ class ChatRoom extends Component {
   }
 
   onMessageSubmit() {
-    Events.publish({
-      id: uuid.v4(),
-      type: 'MESSAGE_RECEIVED',
-      data: {
-        userId: this.state.userId,
-        body: this.state.body,
-        timestamp: new Date().getTime(),
-      }
-    })
+    if (this.state.body !== '') {
+      Events.publish({
+        id: uuid.v4(),
+        type: 'MESSAGE_RECEIVED',
+        data: {
+          userId: this.state.userId,
+          body: this.state.body,
+          timestamp: new Date().getTime(),
+        }
+      })
 
-    this.setState({ body: '' });
+      this.setState({ body: '' });
+    }
   }
 
   handleKeyPress(evt) {
