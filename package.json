@@ -9,7 +9,8 @@
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
     "test": "jest -o --watch",
-    "dev": "concurrently -k \"yarn server\" \"yarn client\""
+    "dev": "concurrently -k \"yarn server\" \"yarn client\"",
+    "buildDocker": "docker build -t github.com/zilvinasu/sse-demo ."
   },
   "nodemonConfig": {
     "ignore": [
