@@ -1,5 +1,6 @@
 const events = require('events');
 const emitter = new events.EventEmitter();
+emitter.setMaxListeners(1000); // Bad things can happen
 
 const EventType = {
   MESSAGE_RECEIVED: 'MESSAGE_RECEIVED',
