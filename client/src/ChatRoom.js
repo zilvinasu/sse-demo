@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Input, Typography } from 'material-ui';
+import { Input, InputAdornment, IconButton, Typography } from 'material-ui';
 import { Send as SendIcon } from 'material-ui-icons';
 import * as uuid from 'uuid';
 import Events from './Events';
 import MessageList from './MessageList';
-
 
 class ChatRoom extends Component {
   constructor(props) {
@@ -22,7 +21,9 @@ class ChatRoom extends Component {
   }
 
   componentDidMount() {
-    this.events = Events.subscribe({ onMessageReceived: this.onMessageReceived });
+    this.events = Events.subscribe({
+      onMessageReceived: this.onMessageReceived,
+    });
   }
 
   onMessageReceived(message) {
@@ -30,17 +31,19 @@ class ChatRoom extends Component {
   }
 
   onMessageSubmit() {
-    Events.publish({
-      id: uuid.v4(),
-      type: 'MessageReceived',
-      data: {
-        userId: this.state.userId,
-        body: this.state.body,
-        timestamp: new Date().getTime(),
-      }
-    })
+    if (this.state.body !== '') {
+      Events.publish({
+        id: uuid.v4(),
+        type: 'MESSAGE_RECEIVED',
+        data: {
+          userId: this.state.userId,
+          body: this.state.body,
+          timestamp: new Date().getTime(),
+        }
+      })
 
-    this.setState({ body: '' });
+      this.setState({ body: '' });
+    }
   }
 
   handleKeyPress(evt) {
@@ -58,23 +61,20 @@ class ChatRoom extends Component {
   render() {
     return (
       <React.Fragment>
-        <Typography variant="title">#creeps-anonymous</Typography>
+        <Typography variant="title" className="chat-title">#anonymous</Typography>
         <MessageList messages={this.state.messages} />
-        <div style={{ display: 'flex' }}>
-          <Input
-            style={{ flex: '2 0 0' }}
-            value={this.state.body}
-            placeholder="Creep into this input field"
-            onKeyPress={this.handleKeyPress}
-            onChange={this.handleInputChange} />
-
-          <Button
-            style={{ flex: '0.1 0 0', marginLeft: '0.5rem' }}
-            size="small"
-            color="primary"
-            variant="raised"
-            onClick={this.onMessageSubmit}><SendIcon />Send</Button>
-        </div>
+        <Input
+          fullWidth
+          className="chat-input"
+          value={this.state.body}
+          placeholder="Type a message..."
+          onKeyPress={this.handleKeyPress}
+          onChange={this.handleInputChange}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton onClick={this.onMessageSubmit}><SendIcon /></IconButton>
+            </InputAdornment>
+          } />
       </React.Fragment>
     );
   }

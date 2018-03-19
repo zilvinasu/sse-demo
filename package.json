@@ -1,0 +1,30 @@
+{
+  "name": "sse-demo",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "git@github.com:zilvinasu/sse-demo.git",
+  "author": "Žilvinas Urbonas <zilvinas.urbon@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev-client": "cd client && yarn start",
+    "dev-server": "nodemon server.js",
+    "dev": "concurrently -k \"yarn dev-server\" \"yarn dev-client\"",
+    "server": "node server.js",
+    "test": "jest -o --watch",
+    "buildDocker": "docker build -t github.com/zilvinasu/sse-demo ."
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "client/*",
+      "*.test.js"
+    ]
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "restify": "^6.3.4"
+  },
+  "devDependencies": {
+    "jest": "^22.4.2",
+    "nodemon": "^1.17.2"
+  }
+}
